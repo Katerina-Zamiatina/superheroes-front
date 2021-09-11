@@ -15,6 +15,10 @@ const apiService = {
   addHero(credentials) {
     return axios.post(`/heroes`);
   },
+
+  updateHero(id, credentials) {
+    return axios.post(`/heroes/${id}`, credentials);
+  },
 };
 
 export default apiService;

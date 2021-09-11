@@ -1,43 +1,40 @@
-import { Link, useLocation } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-// import MoviePreview from '../MoviePreview/MoviePreview';
-// import Container from '../Container';
+import { useSelector, useDispatch } from 'react-redux';
+import { getStateHeroes } from '../../redux/heroes/heroes-selectors';
+
+import HeroCard from '../HeroCard';
+
 import routes from '../../routes';
 
-const HeroesList = ({ movies }) => {
-  const location = useLocation();
-
+const HeroesList = () => {
+  const { heroes } = useSelector(getStateHeroes);
+  console.log('HeroesList', heroes);
   return (
     <div>
-      <ul className="MovieList">
-        {movies.map(movie => (
-          <li className="MovieListItem" key={movie.id}>
-            <Link
-              to={{
-                pathname: `${routes.movies}/${movie.id}`,
-                state: {
-                  from: location,
-                },
-              }}
-            >
-              {/* <MoviePreview movie={movie} /> */}
-            </Link>
-          </li>
-        ))}
+      <ul>
+        {heroes?.map(
+          ({
+            _id,
+            nickname,
+            originDescription,
+            realName,
+            superpowers,
+            catchPhrase,
+            img,
+          }) => (
+            <HeroCard
+              key={_id}
+              nick={nickname}
+              desc={originDescription}
+              name={realName}
+              powers={superpowers}
+              phrase={catchPhrase}
+              img={img}
+            />
+          ),
+        )}
       </ul>
     </div>
   );
 };
-
-// MovieList.propTypes = {
-//   movies: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       title: PropTypes.string.isRequired,
-//       poster_path: PropTypes.string,
-//     }),
-//   ),
-//   // location: PropTypes.object.isRequired,
-// };
 
 export default HeroesList;
