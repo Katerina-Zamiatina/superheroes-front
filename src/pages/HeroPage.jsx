@@ -1,9 +1,9 @@
 import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchHeroById } from '../redux/heroes/heroes-operations';
-// import { getHeroById } from '../redux/heroes/heroes-selectors';
-import apiService from '../service/apiService';
+import { fetchHeroById } from '../redux/hero/hero-operations';
+import { getHeroById } from '../redux/heroes/heroes-selectors';
+// import apiService from '../service/apiService';
 // import Loader from 'react-loader-spinner';
 import HeroDetails from '../components/HeroDetails';
 // import routes from '../routes';
@@ -11,12 +11,12 @@ import HeroDetails from '../components/HeroDetails';
 const HeroPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const heroId = location.pathname.split('/').slice(-1);
+  const heroId = location.pathname.split('/').slice(-1).join();
   console.log(heroId);
-  const hero = useEffect(() => apiService.getHeroById(heroId));
-  // useEffect(() => dispatch(fetchHeroById(heroId)), [dispatch]);
-  // const hero = useSelector(getHeroById(heroId));
-  console.log('HeroPage', hero);
+  useEffect(() => dispatch(fetchHeroById(heroId)), [dispatch, heroId]);
+  // const hero = useSelector(getHeroById());
+  // console.log('HeroPage', hero);
+
   return (
     <>
       <HeroDetails />

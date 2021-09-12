@@ -16,7 +16,7 @@ const { actions, reducer } = createSlice({
   initialState: initialHeroState,
   reducers: {
     fetchHeroSuccess: (state, { payload }) => {
-      state = payload;
+      state.hero = payload;
       state.isLoading = false;
       state.error = null;
     },
@@ -29,13 +29,25 @@ const { actions, reducer } = createSlice({
     },
 
     updateHeroSuccess: (state, { payload }) => {
-      state.heroes = state.heroes.filter(hero => hero._id === payload);
+      state.hero = payload;
       state.isLoading = false;
     },
     updateHeroRequest: state => {
       state.isLoading = true;
     },
     updateHeroError: (state, { payload }) => {
+      state.error = payload;
+      state.isLoading = false;
+    },
+
+    updateHeroImgSuccess: (state, { payload }) => {
+      state.hero.img = payload;
+      state.isLoading = false;
+    },
+    updateHeroImgRequest: state => {
+      state.isLoading = true;
+    },
+    updateHeroImgError: (state, { payload }) => {
       state.error = payload;
       state.isLoading = false;
     },
