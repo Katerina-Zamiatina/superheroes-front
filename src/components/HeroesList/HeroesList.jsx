@@ -1,16 +1,16 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { getStateHeroes } from '../../redux/heroes/heroes-selectors';
+import styles from './HeroesList.module.scss';
 
 import HeroCard from '../HeroCard';
 
-import routes from '../../routes';
-
 const HeroesList = () => {
+  const location = useLocation();
   const { heroes } = useSelector(getStateHeroes);
-  console.log('HeroesList', heroes);
   return (
     <div>
-      <ul>
+      <ul className={styles.list}>
         {heroes?.map(
           ({
             _id,
@@ -21,15 +21,19 @@ const HeroesList = () => {
             catchPhrase,
             img,
           }) => (
-            <HeroCard
-              key={_id}
-              nick={nickname}
-              desc={originDescription}
-              name={realName}
-              powers={superpowers}
-              phrase={catchPhrase}
-              img={img}
-            />
+            <li className={styles.listItem} key={_id}>
+              <Link to={{ pathname: `hero/${_id}`, state: { from: location } }}>
+                <HeroCard nick={nickname} img={img} />
+              </Link>
+              {/* <HeroCard
+                nick={nickname}
+                desc={originDescription}
+                name={realName}
+                powers={superpowers}
+                phrase={catchPhrase}
+                img={img}
+              /> */}
+            </li>
           ),
         )}
       </ul>

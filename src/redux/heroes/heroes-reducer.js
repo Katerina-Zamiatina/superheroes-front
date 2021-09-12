@@ -67,7 +67,8 @@ const { actions, reducer } = createSlice({
     // },
 
     getHeroByIdSuccess: (state, { payload }) => {
-      state.heroes = state.heroes.filter(hero => hero._id === payload);
+      state.heroes.hero = state.heroes.find(hero => hero._id === payload);
+      console.log('reducer', state.heroes);
       state.isLoading = false;
     },
     getHeroByIdRequest: state => {

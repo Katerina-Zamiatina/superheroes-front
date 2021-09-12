@@ -33,7 +33,7 @@ const routes = [
   },
   {
     exact: true,
-    path: '/hero',
+    path: '/hero/:heroId',
     component: HeroPage,
     isProtected: false,
   },

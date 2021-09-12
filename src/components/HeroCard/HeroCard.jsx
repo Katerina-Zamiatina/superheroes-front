@@ -1,16 +1,13 @@
-const HeroCard = ({ nick, desc, name, powers, phrase, img }) => {
+import styles from './HeroCard.module.scss';
+import defaultImg from '../../img/defaultImg.jpeg';
+
+const HeroCard = ({ nick, img }) => {
+  const image = img ? img : defaultImg;
   return (
-    <article>
-      <div className="HeroCard">
-        {/* <img className="HeroImgPoster" src={img} alt={nick} /> */}
-        <div>
-          <p className="HeroNick">{nick}</p>
-          <p className="HeroName">Real name : {name}</p>
-          <p className="HeroDesc">Description: {desc}</p>
-          <p className="HeroPowers">Powers: {powers}</p>
-        </div>
-      </div>
-    </article>
+    <div className={styles.card}>
+      <img className={styles.poster} src={image} alt={nick} />
+      <h1 className={styles.title}>{nick}</h1>
+    </div>
   );
 };
 
