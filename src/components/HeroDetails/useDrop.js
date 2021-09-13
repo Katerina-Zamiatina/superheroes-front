@@ -43,16 +43,18 @@ const useDrop = ref => {
       });
     }
     return () => {
-      const { current } = ref;
-      eventsToPrevent.forEach(event => {
-        current.removeEventListener(event, prevent);
-      });
-      eventsStatus.forEach(event => {
-        current.removeEventListener(event, setStatus(event));
-      });
-      dropEvent.forEach(event => {
-        current.removeEventListener(event, drop);
-      });
+      if (ref?.current) {
+        const { current } = ref;
+        eventsToPrevent.forEach(event => {
+          current.removeEventListener(event, prevent);
+        });
+        eventsStatus.forEach(event => {
+          current.removeEventListener(event, setStatus(event));
+        });
+        dropEvent.forEach(event => {
+          current.removeEventListener(event, drop);
+        });
+      }
     };
     // eslint-disable-next-line
   }, [ref?.current]);
