@@ -28,31 +28,30 @@ const useDrop = ref => {
     },
     [],
   );
+  const refCurrent = ref?.current;
 
   useEffect(() => {
-    if (ref?.current) {
-      const { current } = ref;
+    if (refCurrent) {
       eventsToPrevent.forEach(event => {
-        current.addEventListener(event, prevent);
+        refCurrent.addEventListener(event, prevent);
       });
       eventsStatus.forEach(event => {
-        current.addEventListener(event, setStatus(event));
+        refCurrent.addEventListener(event, setStatus(event));
       });
       dropEvent.forEach(event => {
-        current.addEventListener(event, drop);
+        refCurrent.addEventListener(event, drop);
       });
     }
     return () => {
-      if (ref?.current) {
-        const { current } = ref;
+      if (refCurrent) {
         eventsToPrevent.forEach(event => {
-          current.removeEventListener(event, prevent);
+          refCurrent.removeEventListener(event, prevent);
         });
         eventsStatus.forEach(event => {
-          current.removeEventListener(event, setStatus(event));
+          refCurrent.removeEventListener(event, setStatus(event));
         });
         dropEvent.forEach(event => {
-          current.removeEventListener(event, drop);
+          refCurrent.removeEventListener(event, drop);
         });
       }
     };
