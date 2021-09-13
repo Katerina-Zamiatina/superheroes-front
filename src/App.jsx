@@ -1,14 +1,22 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Loader from 'react-loader-spinner';
-import HomePage from './pages/HomePage';
-import HeroPage from './pages/HeroPage';
+import routes from './routes';
+
+const HomePage = lazy(() =>
+  import('./pages/HeroPage' /*webpackChunkName: "home-page" */),
+);
+
+const HeroPage = lazy(() =>
+  import('./pages/HeroPage.jsx' /*webpackChunkName: "hero-page" */),
+);
 
 const App = () => {
   return (
     <>
       <Header />
+
       <Suspense
         fallback={
           <Loader
@@ -21,8 +29,8 @@ const App = () => {
         }
       >
         <Switch>
-          <Route exact path="/superheroes-front" component={HomePage} />
-          <Route path="/hero" component={HeroPage} />
+          <Route exact path={routes.home} component={HomePage} />
+          <Route path={routes.hero} component={HeroPage} />
         </Switch>
       </Suspense>
     </>

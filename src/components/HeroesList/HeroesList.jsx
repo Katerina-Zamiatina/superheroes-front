@@ -5,6 +5,8 @@ import styles from './HeroesList.module.scss';
 
 import HeroCard from '../HeroCard';
 
+import routes from '../../routes';
+
 const HeroesList = ({ heroes, onDelete }) => {
   const location = useLocation();
 
@@ -13,7 +15,12 @@ const HeroesList = ({ heroes, onDelete }) => {
       <ul className={styles.list}>
         {heroes?.map(({ _id, nickname, img }) => (
           <li className={styles.listItem} key={_id}>
-            <Link to={{ pathname: `hero/${_id}`, state: { from: location } }}>
+            <Link
+              to={{
+                pathname: `${routes.hero}/${_id}`,
+                state: { from: location },
+              }}
+            >
               <HeroCard nick={nickname} img={img} />
             </Link>
             <button className={styles.button} onClick={() => onDelete(_id)}>
