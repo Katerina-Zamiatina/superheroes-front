@@ -54,6 +54,7 @@ const useDrop = ref => {
         current.removeEventListener(event, drop);
       });
     };
+    // eslint-disable-next-line
   }, [ref?.current]);
 
   return { file, active };

@@ -34,7 +34,6 @@ HeroesList.propTypes = {
       img: PropTypes.string,
     }),
   ),
-  // location: PropTypes.object.isRequired,
 };
 
 export default HeroesList;

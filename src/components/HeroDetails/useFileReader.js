@@ -8,6 +8,7 @@ const useFileReader = file => {
     if (file) {
       startReading(file);
     }
+    // eslint-disable-next-line
   }, [file]);
 
   const reader = useMemo(() => new FileReader(), []);
