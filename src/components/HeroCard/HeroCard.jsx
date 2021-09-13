@@ -3,6 +3,7 @@ import defaultImg from '../../img/defaultImg.jpeg';
 
 const HeroCard = ({ nick, img }) => {
   const image = img ? img : defaultImg;
+
   return (
     <div className={styles.card}>
       <img className={styles.poster} src={image} alt={nick} />
