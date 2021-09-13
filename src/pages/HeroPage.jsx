@@ -1,14 +1,17 @@
+
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getHeroById, updateHero } from '../service/apiService';
 import Container from '../components/Container';
 import Loader from 'react-loader-spinner';
+
 import HeroDetails from '../components/HeroDetails';
 
 // import routes from '../routes';
 
 const HeroPage = () => {
   const location = useLocation();
+
   const heroId = location.pathname.split('/').slice(-1);
 
   const [hero, setHero] = useState(null);
@@ -85,6 +88,7 @@ const HeroPage = () => {
       catchPhrase: '',
     });
   };
+
 
   return (
     <Container>
